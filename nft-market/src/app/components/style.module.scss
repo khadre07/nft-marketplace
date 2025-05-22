@@ -1,0 +1,172 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container__inner {
+    overflow: hidden;
+    position: relative;
+    width: 80vw;
+  }
+  
+  .container__inner::before {
+    display: block;
+    content: '';
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  
+  .img__container {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .img__container > img {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .ticker {
+    position: absolute;
+    max-height: 4rem;
+    max-width: 4rem;
+    width: 3.5vw;
+    height: 3.5vw;
+    bottom: 2rem;
+    left: 2rem;
+  }
+  
+  .ticker > * {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .ticker > div {
+    opacity: 0.2;
+    border: solid 3px black;
+  }
+  
+  .ticker > svg {
+    fill: none;
+    stroke: black;
+    stroke-width: 3;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+  }
+  @keyframes borderLight {
+    0%, 100% {
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 2px;
+    }
+    25% {
+      left: calc(100% - 10px);
+      top: 0;
+      width: 10px;
+      height: 2px;
+    }
+    26% {
+      left: calc(100% - 2px);
+      top: 0;
+      width: 2px;
+      height: 10px;
+    }
+    50% {
+      left: calc(100% - 2px);
+      top: calc(100% - 10px);
+      width: 2px;
+      height: 10px;
+    }
+    51% {
+      left: calc(100% - 10px);
+      top: calc(100% - 2px);
+      width: 10px;
+      height: 2px;
+    }
+    75% {
+      left: 0;
+      top: calc(100% - 2px);
+      width: 10px;
+      height: 2px;
+    }
+    76% {
+      left: 0;
+      top: calc(100% - 10px);
+      width: 2px;
+      height: 10px;
+    }
+    99% {
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 10px;
+    }
+  }
+  .light-element {
+    position: absolute;
+    background: white;
+    box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.8);
+    border-radius: 1px;
+    z-index: 56;
+    animation: borderLight 2s linear infinite;
+  }
+  .card{
+    margin: 0 auto;
+    padding: 2em;
+    width: 300px;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  /* CSS personnalisé */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card::after, .card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  padding: 3px;
+  border-radius: 10px;
+  animation: spin 3s linear infinite;
+}
+
+.card::after {
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+}
+
+.card::before {
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
